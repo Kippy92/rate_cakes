@@ -1,0 +1,9 @@
+<p *ngIf="cakeToShow">
+    <img src= "{{ cakeToShow[0].image }}" style="width: 200px; height: 250px">
+  </p>
+  <div *ngIf="cakeToShow">
+    <ul *ngFor="let rating of cakeToShow[0].rating">
+        <li> {{ rating['name'] }} </li>
+      <li> {{ rating['score'] }} </li>
+  </ul>
+</div>

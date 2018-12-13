@@ -1,0 +1,38 @@
+<div class='container'>
+  <h1>
+    Rate My Cakes
+  </h1>
+  <h2>Submit a Cake!</h2>
+  <form (submit)="addCake()">
+      <p>Title</p>
+      <p><input type="text" name="newCake.name" [(ngModel)]="newCake.name" /> </p>
+      <p>Description</p>
+      <p><input type="text" name="newCake.image" [(ngModel)]="newCake.image" /></p>
+      <input type="submit" value="submit cake" />
+  </form>
+  <h2>List of Cakes</h2>
+      <ul *ngFor="let cake of cakes">
+        <li>
+          {{ cake.name }}
+        </li>
+        <li>
+          <img (click) = getCake(cake._id) src="{{ cake.image }}" style="width: 200px; height: 250px">
+          <form (submit)="updateCakeRating(cake._id)">
+          <p>Rating: 
+            <select name="newRating.score" [(ngModel)]="newRating.score">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+        </p>
+          <p>Comments: <input type="text" name="newRating.name" [(ngModel)]="newRating.name"/></p>
+          <p><input type="submit" value="submit score" /></p>
+        </form>
+        </li>
+    </ul>
+  <h2 *ngIf="this_cake">Baked By {{ this_cake[0].name }}</h2>
+  <app-cake *ngIf="this_cake" [cakeToShow]="this_cake"></app-cake> 
+</div>
+<router-outlet></router-outlet>
